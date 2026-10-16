@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="it" data-pixel-id="{{PIXEL_ID}}" data-release="{{TITLE}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>{{TITLE}} · {{ARTIST_TITLE}}</title>
+  <meta name="description" content="{{TITLE}}, {{ARTIST_TITLE}}. {{TAGLINE}}">
+  <meta name="theme-color" content="#000000">
+  <link rel="icon" type="image/png" href="icon.png">
+  <link rel="apple-touch-icon" href="icon.png">
+  <link rel="canonical" href="{{URL}}">
+
+  <meta property="og:type" content="music.song">
+  <meta property="og:title" content="{{TITLE}} · {{ARTIST_TITLE}}">
+  <meta property="og:description" content="{{TAGLINE}}">
+  <meta property="og:image" content="{{URL}}og.jpg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="1200">
+  <meta property="og:url" content="{{URL}}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{TITLE}} · {{ARTIST_TITLE}}">
+  <meta name="twitter:image" content="{{URL}}og.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Krona+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../shared/style.css">
+  <script src="../shared/pixel.js"></script>
+  <noscript><img height="1" width="1" style="display:none" alt=""
+    src="https://www.facebook.com/tr?id={{PIXEL_ID}}&ev=PageView&noscript=1"></noscript>
+</head>
+<body>
+  <div class="glow"></div>
+  <main>
+    <img class="cover" src="cover.jpg" width="1200" height="1200" alt="{{TITLE}}, copertina di {{ARTIST_TITLE}}">
+    <div class="chant">{{TAGLINE}}</div>
+    <h1>{{TITLE}}</h1>
+    <div class="rule"></div>
+    <div class="artist"><a href="../">{{ARTIST}}</a></div>
+
+    <nav class="links" aria-label="Piattaforme">
+{{BUTTONS}}
+    </nav>
+  </main>
+
+  <footer>© {{YEAR}} {{ARTIST}} · <a href="https://instagram.com/{{INSTAGRAM}}">@{{INSTAGRAM}}</a></footer>
+</body>
+</html>

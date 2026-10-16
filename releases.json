@@ -1,0 +1,25 @@
+{
+  "site": {
+    "base_url": "https://alexpalaz.github.io",
+    "artist": "ALEX PALAZ",
+    "artist_tag": "VJ = Vibe Jockey",
+    "instagram": "alexpalazvj",
+    "meta_pixel_id": "2639658063139226",
+    "year": "2026"
+  },
+  "releases": [
+    {
+      "slug": "bombaka",
+      "title": "BOMBAKA",
+      "tagline": "BO · BOM · BA · KA",
+      "date": "2026-10-14",
+      "cover": "covers/bombaka.jpg",
+      "links": {
+        "spotify": "https://open.spotify.com/track/2b4hlGFgVqu2lTVwcKlE8A",
+        "applemusic": "https://music.apple.com/it/album/bombaka/6822785201?i=6822785202",
+        "more": "https://distrokid.com/hyperfollow/alexpalaz/bombaka",
+        "more_label": "YouTube · Amazon · Deezer · TIDAL"
+      }
+    }
+  ]
+}
