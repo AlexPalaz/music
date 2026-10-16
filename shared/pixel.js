@@ -11,9 +11,25 @@
   n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
   t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
   document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  // Traffic source from UTM parameters (utm_source=meta&utm_medium=paid&utm_campaign=…&utm_content=…).
+  // Remembered for the session so hub → release navigation keeps the original source.
+  var UTM = (function () {
+    var keys = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content'];
+    var q = {}, found = false;
+    try {
+      var p = new URLSearchParams(location.search);
+      keys.forEach(function (k) { var v = p.get(k); if (v) { q[k] = v.slice(0, 80); found = true; } });
+      if (found) sessionStorage.setItem('ap_utm', JSON.stringify(q));
+      else q = JSON.parse(sessionStorage.getItem('ap_utm') || '{}');
+    } catch (err) { q = {}; }
+    if (!q.utm_source) q.utm_source = document.referrer ? 'referral' : 'direct';
+    return q;
+  })();
+  var SRC = { source: UTM.utm_source, medium: UTM.utm_medium || '', campaign: UTM.utm_campaign || '', ad: UTM.utm_content || '' };
+
   fbq('init', PIXEL_ID);
   fbq('track', 'PageView');
-  fbq('track', 'ViewContent', { content_name: RELEASE, content_type: 'song' });
+  fbq('track', 'ViewContent', { content_name: RELEASE, content_type: 'song', source: SRC.source, medium: SRC.medium, campaign: SRC.campaign, ad: SRC.ad });
 
   // ?debug=1 → small badge saying whether Meta's script actually loaded on this device.
   if (/[?&]debug=1/.test(location.search)) {
@@ -48,8 +64,8 @@
         var done = false;
         var go = function () { if (!done) { done = true; window.location.href = href; } };
         try {
-          fbq('track', 'Lead', { content_name: RELEASE, content_category: platform }, { eventID: platform + '-' + Date.now() });
-          fbq('trackCustom', 'Listen', { platform: platform, track: RELEASE });
+          fbq('track', 'Lead', { content_name: RELEASE, content_category: platform, source: SRC.source, medium: SRC.medium, campaign: SRC.campaign, ad: SRC.ad }, { eventID: platform + '-' + Date.now() });
+          fbq('trackCustom', 'Listen', { platform: platform, track: RELEASE, source: SRC.source, medium: SRC.medium, campaign: SRC.campaign, ad: SRC.ad });
         } catch (err) {}
         setTimeout(go, 250);
       });

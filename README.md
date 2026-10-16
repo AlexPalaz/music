@@ -43,3 +43,16 @@ La pagina sarà su `https://alexpalaz.github.io/music/<slug>/` dopo circa un min
 - `shared/style.css`, `shared/pixel.js` — stile e tracciamento comuni a tutte le pagine.
 - `tools/release.html`, `tools/hub.html` — modelli; `tools/build.py` — generatore.
 - `index.html`, `<slug>/` — output generato, non modificare a mano.
+
+## Tracciare la provenienza dei click
+
+Ogni pagina legge i parametri UTM dall'indirizzo e li allega agli eventi del Pixel Meta
+(`ViewContent`, `Lead`, `Listen`) come `source`, `medium`, `campaign`, `ad`.
+In Gestione eventi → evento → "Visualizza dettagli" si vedono i Lead divisi per sorgente.
+
+Link da usare:
+
+- Meta Ads (parametri URL dell'inserzione): `utm_source=meta&utm_medium=paid&utm_campaign=bombaka_test&utm_content={{ad.name}}`
+- Bio Instagram: `https://alexpalaz.github.io/music/bombaka/?utm_source=instagram&utm_medium=bio`
+- Bio TikTok: `https://alexpalaz.github.io/music/bombaka/?utm_source=tiktok&utm_medium=bio`
+- Senza parametri → `source` vale `direct` (o `referral` se arriva da un altro sito).
