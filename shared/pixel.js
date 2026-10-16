@@ -15,6 +15,28 @@
   fbq('track', 'PageView');
   fbq('track', 'ViewContent', { content_name: RELEASE, content_type: 'song' });
 
+  // ?debug=1 → small badge saying whether Meta's script actually loaded on this device.
+  if (/[?&]debug=1/.test(location.search)) {
+    document.addEventListener('DOMContentLoaded', function () {
+      var b = document.createElement('div');
+      b.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:9;padding:10px 14px;border-radius:10px;font:12px/1.4 monospace;background:#222;color:#fff;max-width:80vw';
+      b.textContent = 'pixel: attendo…';
+      document.body.appendChild(b);
+      var tries = 0;
+      var check = function () {
+        tries++;
+        var ok = window.fbq && fbq.instance && typeof fbq.instance.pixelsByID !== 'undefined';
+        if (ok) { b.textContent = 'pixel OK · id ' + PIXEL_ID + ' · PageView + ViewContent inviati'; b.style.background = '#1DB954'; b.style.color = '#000'; return; }
+        if (tries > 20) { b.textContent = 'pixel BLOCCATO su questo dispositivo (script di Meta non caricato: VPN, blocco tracker o DNS)'; b.style.background = '#ff1a1a'; return; }
+        setTimeout(check, 250);
+      };
+      check();
+      document.querySelectorAll('a[data-platform]').forEach(function (a) {
+        a.addEventListener('click', function () { b.textContent += ' · click ' + a.getAttribute('data-platform') + ' → Lead inviato'; }, true);
+      });
+    });
+  }
+
   // Each platform click = standard "Lead" (for ad optimisation) + custom "Listen".
   document.addEventListener('DOMContentLoaded', function () {
     document.querySelectorAll('a[data-platform]').forEach(function (a) {
