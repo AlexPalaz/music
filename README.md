@@ -1,4 +1,4 @@
-# alexpalaz.github.io — smart link di Alex Palaz
+# alexpalaz-music-links — smart link di Alex Palaz
 
 Un sito statico, gratuito, con una pagina per ogni uscita e la home che le elenca.
 Ogni pagina ha il Pixel Meta e traccia i click verso le piattaforme (evento `Lead`).
