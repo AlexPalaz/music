@@ -34,7 +34,7 @@ python3 tools/build.py
 git add -A && git commit -m "Aggiunta <titolo>" && git push
 ```
 
-La pagina sarà su `https://alexpalaz.github.io/<slug>/` dopo circa un minuto.
+La pagina sarà su `https://alexpalaz.github.io/music/<slug>/` dopo circa un minuto.
 
 ## Struttura
 
